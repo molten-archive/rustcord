@@ -1,4 +1,3 @@
-
 function patch(parent, functionName, callback) {
     if(!parent) {
         throw new Error('are you retarded');
