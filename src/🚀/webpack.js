@@ -18,6 +18,7 @@ function filterModules(moduleList, filter) {
     for (m in moduleList) {
         if (moduleList.hasOwnProperty(m)) {
             const module = moduleList[m].exports;
+            if (!module) continue;
             if (module.__esModule && module.default && filter(module.default)) {
                 modules.push(module.default);
             }
