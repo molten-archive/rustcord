@@ -1,0 +1,19 @@
+{
+  "name": "prototype",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "buildDev": "esbuild --bundle --outfile=dist/rustcord.js src/index.js",
+    "build": "esbuild --minify --bundle --outfile=dist/rustcord.js src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "esbuild": "^0.14.10"
+  },
+  "dependencies": {
+    "hell.js": "^1.1.5"
+  }
+}
