@@ -41,6 +41,11 @@ let webpack = {
             : webpack.find(
                 (module) => module?.default?.displayName === displayName);
     },
+    findByProps: (...props) => {
+        return webpack.find((module) => {
+            return props.every((prop) => module[prop] !== undefined)
+        })
+    }
 
 }
 
