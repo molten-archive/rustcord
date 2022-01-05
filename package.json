@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "demonpatcher": "^0.0.2",
     "esbuild": "^0.14.10"
   },
   "dependencies": {

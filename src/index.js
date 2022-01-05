@@ -1,4 +1,5 @@
 import patch from "./🚀/patch";
+import demonpatcher from "demonpatcher"
 import hell from "hell.js"
 import webpack from "./🚀/webpack";
 import initSettings from "./🚀/settings";
@@ -11,9 +12,12 @@ if (window.rust) {
 }
 
 window.rust = {
-    patch: patch,
-    hell: hell,
+    patcher: {
+		patch:     patch,
+		hellPatch: demonpatcher.monkeyPatch
+	},
+    hell:    hell,
     webpack: webpack,
-    common: modules
+    common:  modules
 }
 window.rust._unpatch = initSettings()

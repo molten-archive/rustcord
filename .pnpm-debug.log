@@ -1,0 +1,73 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1
+  },
+  "1 debug pnpm:package-manifest": {
+    "initial": {
+      "name": "prototype",
+      "version": "1.0.0",
+      "description": "",
+      "main": "index.js",
+      "scripts": {
+        "buildDev": "esbuild --bundle --outfile=dist/rustcord.js src/index.js",
+        "build": "esbuild --minify --bundle --outfile=dist/rustcord.js src/index.js"
+      },
+      "keywords": [],
+      "author": "",
+      "license": "ISC",
+      "devDependencies": {
+        "esbuild": "^0.14.10"
+      },
+      "dependencies": {
+        "hell.js": "^1.1.5"
+      }
+    },
+    "prefix": "/home/ruthenic/Coding/Javascript/rustcord"
+  },
+  "2 debug pnpm:context": {
+    "currentLockfileExists": false,
+    "storeDir": "/home/ruthenic/.pnpm-store/v3",
+    "virtualStoreDir": "/home/ruthenic/Coding/Javascript/rustcord/node_modules/.pnpm"
+  },
+  "3 debug pnpm:stage": {
+    "prefix": "/home/ruthenic/Coding/Javascript/rustcord",
+    "stage": "resolution_started"
+  },
+  "4 debug pnpm:_dependency_resolved": {
+    "resolution": "registry.npmjs.org/esbuild/0.14.10",
+    "wanted": {
+      "dependentId": ".",
+      "name": "esbuild",
+      "rawSpec": "^0.14.10"
+    }
+  },
+  "5 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/esbuild/0.14.10",
+    "requester": "/home/ruthenic/Coding/Javascript/rustcord",
+    "status": "resolved"
+  },
+  "6 debug pnpm:progress": {
+    "packageId": "registry.npmjs.org/esbuild/0.14.10",
+    "requester": "/home/ruthenic/Coding/Javascript/rustcord",
+    "status": "found_in_store"
+  },
+  "7 error pnpm": {
+    "code": "ERR_PNPM_FETCH_404",
+    "hint": "demonbuilder is not in the npm registry, or you have no permission to fetch it.\n\nAn authorization header was used: Bearer npm_[hidden]",
+    "request": {
+      "authHeaderValue": "Bearer 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",
+      "url": "https://registry.npmjs.org/demonbuilder"
+    },
+    "response": {
+      "size": 0
+    },
+    "pkgName": "demonbuilder",
+    "pkgsStack": [],
+    "err": {
+      "name": "pnpm",
+      "message": "GET https://registry.npmjs.org/demonbuilder: Not Found - 404",
+      "code": "ERR_PNPM_FETCH_404",
+      "stack": "pnpm: GET https://registry.npmjs.org/demonbuilder: Not Found - 404\n    at RetryOperation._fn (/usr/lib/node_modules/pnpm/dist/pnpm.cjs:85392:19)\n    at processTicksAndRejections (node:internal/process/task_queues:96:5)"
+    }
+  }
+}
