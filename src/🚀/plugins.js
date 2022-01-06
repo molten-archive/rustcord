@@ -1,23 +1,20 @@
 import webpack from "./webpack"
 import { patch } from "./patch"
+import { get, set, del, update } from "idb-keyval"
 import logger from "./logger"
-import { createPersistentNest } from "./util"
-
-import * as nests from "nests"
 
 import SettingsElement from "./components/Settings"
 const Settings = webpack.findByDisplayName("SettingsView")
 
-async function initiazliePluginNest() {
-    window.rust.plugins.pluginNest = await createPersistentNest("RUSTCORD_PLUGINS");
-}
-
 let pluginAPI = {
-    getPlugins: () => {
-        return pluginAPI.pluginNest.list
+    getPlugins: async () => {
+        return await get("plugins") || []
     },
-    register: (plugin) => {
-        pluginAPI.pluginNest.list.push(plugin)
+    addPlugin: async (plugin) => {
+        await set("plugins", [...(await pluginAPI.getPlugins()), plugin])
+    },
+    removePlugin: async (plugin) => {
+        await update("plugins", plugins => plugins.filter((p) => p != plugin))
     }
 }
 
@@ -40,4 +37,4 @@ function initSettings() {
     })
 }
 
-export { initSettings, pluginAPI, initiazliePluginNest };
+export { initSettings, pluginAPI };

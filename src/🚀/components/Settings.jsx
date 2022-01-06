@@ -1,21 +1,23 @@
-import modules from "../modules";
-const React = modules.React
+import { React } from "../modules";
 
-import webpack from "../webpack";
 import { pluginAPI } from "../plugins";
-import { injectCSS } from "../patch";
+import ErrorBoundry from "./ErrorBoundry";
 
 function Settings(props) {
-    let plugins = pluginAPI.getPlugins();
+    let [pluginList, setPluginList] = React.useState([])
+
+    pluginAPI.getPlugins().then(p => setPluginList(p))
 
     return (
-        <div className="rustcord-settings">
-            {plugins.map(plugin => (
-                <div className={`rustcord-plugin-${plugin.name}`}>
-                    <h2>{plugin.name}</h2>
-                </div>
-            ))}
-        </div>
+        <ErrorBoundry>
+            <div className="rustcord-settings">
+                {pluginList.map(plugin => (
+                    <div className={`rustcord-plugin-${plugin.name}`}>
+                        <h2>{plugin.name}</h2>
+                    </div>
+                ))}
+            </div>
+        </ErrorBoundry>
     )
 }
 
