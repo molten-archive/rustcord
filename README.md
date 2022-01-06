@@ -12,4 +12,4 @@
 ![](https://img.shields.io/badge/Crunchyroll-F47521?style=for-the-badge&logo=crunchyroll&logoColor=white)
 
 # Rustcord is the new generation of client mods 🚀🚀🚀
-Rustcord 🚀🚀 is writtn in modern technologies such as C 🚀🚀, BASIC 🚀🚀, with no javascript 📉.
+Rustcord 🚀🚀 is writtn in modern technologies such as Rust 🚀🚀🚀🚀, and no javascript 📉.
