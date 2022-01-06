@@ -1,8 +1,5 @@
 function patch(parent, functionName, callback) {
-    if(!parent) {
-        throw new Error('are you retarded');
-    }
-    if(typeof parent[functionName] != 'function') {
+    if(typeof parent[functionName] != 'function' || !parent.hasOwnProperty(functionName)) {
         throw new Error(`eat shit`);
     }
     const original = parent[functionName];
