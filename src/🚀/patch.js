@@ -14,4 +14,13 @@ function patch(parent, functionName, callback) {
     }
 }
 
-export default patch;
+function injectCSS(css) {
+    const style = document.createElement('style');
+    style.className = "__RUSTCORD_CSS"
+    style.innerHTML = css;
+    document.head.appendChild(style);
+
+    return () => style.remove()
+}
+
+export { patch, injectCSS };

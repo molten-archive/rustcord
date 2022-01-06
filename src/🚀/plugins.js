@@ -1,23 +1,24 @@
 import webpack from "./webpack"
-import patch from "./patch"
+import { patch } from "./patch"
 import logger from "./logger"
+import { get, set } from "idb-keyval"
 
 import SettingsElement from "./components/Settings"
+import modules from "./modules"
 const Settings = webpack.findByDisplayName("SettingsView")
 
-function initSettings() {
-
-    // Initialize the database
-    let openDB = window.indexedDB.open("rustcord", 1)
-    openDB.onsuccess = () => {
-        logger.log("Rustcord has loaded the database!")
-        window.__RUSTCORDDB = openDB.result
+let pluginAPI = {
+    getPlugins: async (plugin) => {
+        return await get("plugins") || []
+    },
+    register: async (plugin) => {
+        await set("plugins", [...(await pluginAPI.getPlugins()), plugin])
+        return await pluginAPI.getPlugins()
     }
-    openDB.onerror = () => {
-        logger.error("Rustcord could not load the database!")
-    }
+}
 
-
+async function initSettings() {
+    // cumcord was a mistake
     return patch(Settings.prototype, "getPredicateSections", (res, args) => {
         const position = res.findIndex((item) => { return item.section == "changelog" }) - 1
 
@@ -35,4 +36,4 @@ function initSettings() {
     })
 }
 
-export default initSettings;
+export { initSettings, pluginAPI };

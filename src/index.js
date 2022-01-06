@@ -1,9 +1,8 @@
-import patch from "./🚀/patch";
-import demonpatcher from "demonpatcher"
+import { patch, injectCSS } from "./🚀/patch";
 import hell from "hell.js"
 import webpack from "./🚀/webpack";
 import modules from "./🚀/modules";
-import initSettings from "./🚀/plugins";
+import { initSettings, pluginAPI } from "./🚀/plugins";
 
 if (window.rust) {
     console.log('We have detected rust, time to anihilate your mom.'); 
@@ -19,12 +18,13 @@ if (!window.localStorage.rustcord) {
 
 window.rust = {
     patcher: {
-		patch:     patch,
-		hellPatch: demonpatcher.monkeyPatch
+		patch: patch,
+        injectCSS: injectCSS
 	},
     hell:    hell,
     webpack: webpack,
     common:  modules,
+    plugins: pluginAPI,
     _unpatch: []
 }
-window.rust._unpatch = initSettings();
+window.rust._unpatch.push(initSettings());
