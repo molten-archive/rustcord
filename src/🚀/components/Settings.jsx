@@ -5,12 +5,8 @@ import webpack from "../webpack";
 import { pluginAPI } from "../plugins";
 import { injectCSS } from "../patch";
 
-async function Settings(props) {
-    window.rust._unpatch.push(injectCSS(
-        ``
-    ))
-
-    let plugins = await pluginAPI.getPlugins();
+function Settings(props) {
+    let plugins = pluginAPI.getPlugins();
 
     return (
         <div className="rustcord-settings">

@@ -1,23 +1,27 @@
 import webpack from "./webpack"
 import { patch } from "./patch"
 import logger from "./logger"
-import { get, set } from "idb-keyval"
+import { createPersistentNest } from "./util"
+
+import * as nests from "nests"
 
 import SettingsElement from "./components/Settings"
-import modules from "./modules"
 const Settings = webpack.findByDisplayName("SettingsView")
 
+async function initiazliePluginNest() {
+    window.rust.plugins.pluginNest = await createPersistentNest("RUSTCORD_PLUGINS");
+}
+
 let pluginAPI = {
-    getPlugins: async (plugin) => {
-        return await get("plugins") || []
+    getPlugins: () => {
+        return pluginAPI.pluginNest.list
     },
-    register: async (plugin) => {
-        await set("plugins", [...(await pluginAPI.getPlugins()), plugin])
-        return await pluginAPI.getPlugins()
+    register: (plugin) => {
+        pluginAPI.pluginNest.list.push(plugin)
     }
 }
 
-async function initSettings() {
+function initSettings() {
     // cumcord was a mistake
     return patch(Settings.prototype, "getPredicateSections", (res, args) => {
         const position = res.findIndex((item) => { return item.section == "changelog" }) - 1
@@ -36,4 +40,4 @@ async function initSettings() {
     })
 }
 
-export { initSettings, pluginAPI };
+export { initSettings, pluginAPI, initiazliePluginNest };

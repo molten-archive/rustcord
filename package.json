@@ -15,5 +15,7 @@
   },
   "dependencies": {
     "hell.js": "^1.1.5",
+    "idb-keyval": "^6.0.3",
+    "nests": "^2.3.1"
   }
 }
