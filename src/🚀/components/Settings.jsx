@@ -2,6 +2,7 @@ import { React } from "../modules";
 
 import { pluginAPI } from "../plugins";
 import ErrorBoundry from "./ErrorBoundry";
+import PluginCard from "./pluginCard";
 
 function Settings(props) {
     let [pluginList, setPluginList] = React.useState([])
@@ -9,15 +10,16 @@ function Settings(props) {
     pluginAPI.getPlugins().then(p => setPluginList(p))
 
     return (
-        <ErrorBoundry>
-            <div className="rustcord-settings">
-                {pluginList.map(plugin => (
-                    <div className={`rustcord-plugin-${plugin.name}`}>
-                        <h2>{plugin.name}</h2>
-                    </div>
-                ))}
-            </div>
-        </ErrorBoundry>
+        <div className="rustcord-settings">
+            {pluginList.map(plugin => (
+                <PluginCard
+                    name={plugin.name}
+                    description={plugin.description}
+                    enabled={plugin.enabled}
+                    author={plugin.author}
+                />
+            ))}
+        </div>
     )
 }
 

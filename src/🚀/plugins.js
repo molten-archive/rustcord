@@ -13,8 +13,21 @@ let pluginAPI = {
     addPlugin: async (plugin) => {
         await set("plugins", [...(await pluginAPI.getPlugins()), plugin])
     },
-    removePlugin: async (plugin) => {
-        await update("plugins", plugins => plugins.filter((p) => p != plugin))
+    removePlugin: async () => {
+        await del("plugins")
+    },
+    togglePlugin: async (pluginName, tval) => {
+        const plugins = await pluginAPI.getPlugins()
+        let plugin = plugins.find((p) => p.name == pluginName)
+        plugin.enabled = tval || !plugin.enabled
+        await update("plugins", val => [...val.filter(p => p.name != pluginName), plugin])
+    },
+    run: async (pluginName, toggle) => {
+        const plugins = await pluginAPI.getPlugins()
+        const plugin = plugins.find((p) => p.name == pluginName)
+        if (!plugin) return
+        const pluginCode = await fetch(plugin.url).then(res => res.text())
+        eval(pluginCode)
     }
 }
 
