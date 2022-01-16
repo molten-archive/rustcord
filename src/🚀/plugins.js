@@ -28,6 +28,14 @@ let pluginAPI = {
         if (!plugin) return
         const pluginCode = await fetch(plugin.url).then(res => res.text())
         eval(pluginCode)
+        // this is literally it
+        // i'm done with this project
+        // i'm done with this project
+        // i'm done with this project
+        // i'm done with this project
+        // i'm done with this project
+        // i'm done with this project
+        
     }
 }
 
