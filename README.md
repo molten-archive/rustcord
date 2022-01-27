@@ -13,3 +13,6 @@
 
 # Rustcord is the new generation of client mods 🚀🚀🚀
 Rustcord 🚀🚀 is writtn in modern technologies such as Rust 🚀🚀🚀🚀, and no javascript 📉.
+
+# Finished & to be redone
+welcome in the archive
